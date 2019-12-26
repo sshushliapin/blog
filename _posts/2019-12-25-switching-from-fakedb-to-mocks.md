@@ -5,11 +5,11 @@ date:   2019-12-25 12:07:00 +0200
 categories: 
 ---
 
-Historically, Sitecore was not a unit test friendly platform. The API consisted of static managers and testing was quite cumbersome. There were different attempts to address that starting from 'unit testing' via [web runners](https://www.codeflood.net/testrunner/), using commercial tools that could 'mock' statics (like [Microsoft Fakes](https://docs.microsoft.com/en-us/visualstudio/test/isolating-code-under-test-with-microsoft-fakes?view=vs-2019)) or just relying on expenive integration testing.
+Historically, Sitecore was not a unit test friendly platform. The API consisted of static managers and testing was quite cumbersome. There were different attempts to address that starting from 'unit testing' via [web runners](https://www.codeflood.net/testrunner/), using commercial tools that could 'mock' statics (like [Microsoft Fakes](https://docs.microsoft.com/en-us/visualstudio/test/isolating-code-under-test-with-microsoft-fakes?view=vs-2019)) or just relying on expensive integration testing.
 
 ### In-memory database
 
-[FakeDb](https://github.com/sshushliapin/Sitecore.FakeDb) provided a mechanism to substitute database calls with fake in-memory data. It also provided an alternative API to set the content with minimal amount of code. It worked out, but everything has a price. First of all, till some point FakeDb has to run *real* Sitecore code. The most obvious (and annoying) indication of that is the [necessity of using license file](https://github.com/sshushliapin/Sitecore.FakeDb/wiki/Installation#applying-the-license-file) and [additional cofigiration steps](https://github.com/Sitecore/Habitat/pull/433/files).
+[FakeDb](https://github.com/sshushliapin/Sitecore.FakeDb) provided a mechanism to substitute database calls with fake in-memory data. It also provided an alternative API to set the content with minimal amount of code. It worked out, but everything has a price. First of all, till some point FakeDb has to run *real* Sitecore code. The most obvious (and annoying) indication of that is the [necessity of using license file](https://github.com/sshushliapin/Sitecore.FakeDb/wiki/Installation#applying-the-license-file) and [additional cofiguration steps](https://github.com/Sitecore/Habitat/pull/433/files).
 
 Another potential issue is a risk of breaking and/or behavior changes in the Platform. FakeDb version 1 managed to cover wide range of Sitecore versions [7.2, 8.0, 8.1, 8.2](https://github.com/sshushliapin/Sitecore.FakeDb/blob/v1.7.4/version.props#L7-L8) with numerous updates. Version 2 works with [9.1 and 9.2](https://github.com/sshushliapin/Sitecore.FakeDb/blob/v2.0.1/version.props#L7) and version 3 had to [overcome list of breaking changes](https://github.com/sshushliapin/Sitecore.FakeDb/pull/213) to be compatible with 9.3. We cannot predict what may change in platform in future and how it can impact the tool.
 
@@ -63,11 +63,11 @@ public void GetItem(Database db, Item item)
 }
 ```
 
-As you could noticed, there is no db context. You've got item and database variables and you're free to configure them the way you need. There is a couple of steps you need to perform to make this code working, but the good news are that you need to do that *once* when starting a new project. Let's set up a solution first.
+As you could notice, there is no db context. You've got item and database variables and you're free to configure them the way you need. There is a couple of steps you need to perform to make this code working, but the good news are that you need to do that *once* when starting a new project. Let's set up a solution first.
 
 ## Toolset
 
-In my posts I'll use [xUnit](https://xunit.net/), [NSubstitute](https://nsubstitute.github.io/) and [AutoFixture](https://github.com/AutoFixture/AutoFixture). [NUnit](https://nunit.org/), and [Moq](https://github.com/Moq/moq4/wiki/Quickstart) would work as well, that's just a matter of preference. But AutoFixture (AF) - that what makes the difference. This tool can help significantly if used the right way. If you not familiar with AF, please reffer to the [Cheat Sheet](https://github.com/AutoFixture/AutoFixture/wiki/Cheat-Sheet) page.
+In my posts I'll use [xUnit](https://xunit.net/), [NSubstitute](https://nsubstitute.github.io/) and [AutoFixture](https://github.com/AutoFixture/AutoFixture). [NUnit](https://nunit.org/), and [Moq](https://github.com/Moq/moq4/wiki/Quickstart) would work as well, that's just a matter of preference. But AutoFixture (AF) - that what makes the difference. This tool can help significantly if used the right way. If you not familiar with AF, please refer to the [Cheat Sheet](https://github.com/AutoFixture/AutoFixture/wiki/Cheat-Sheet) page.
 
 All we need is a class library referencing the following NuGet packages:
 
@@ -105,7 +105,7 @@ public void CreateDatabase(Database database) // fails here
 // cause of the failure.
 ```
 
-AutoFixture did not manage to create an instance of abstract database type but it provides a mechanism of [customiations](https://blog.ploeh.dk/2011/03/18/EncapsulatingAutoFixtureCustomizations/) to handle such scenarios. All we need is to create a class that will instantiate a database mock:
+AutoFixture did not manage to create an instance of abstract database type but it provides a mechanism of [customizations](https://blog.ploeh.dk/2011/03/18/EncapsulatingAutoFixtureCustomizations/) to handle such scenarios. All we need is to create a class that will instantiate a database mock:
 
 ```cs
 internal class DatabaseCustomization : AutoFixture.ICustomization
@@ -141,7 +141,7 @@ public void CreateDatabase(Database database)
 }
 ```
 
-From now on, for all the tests that requres Sitecore classes, the `[DefaultAutoData]` attribute should be used.
+From now on, for all the tests that requires Sitecore classes, the `[DefaultAutoData]` attribute should be used.
 
 ### Setting up AutoFixture: Item
 
@@ -161,7 +161,7 @@ public void CreateItem(Item item) // fails here
 // System.TypeInitializationException: The type initializer for 'Sitecore.SecurityModel.License.LicenseManager' threw an exception.
 ```
 
-License Manager in the stack trace? It means that we're running *internal* Sitecore code. To make rubust tests we should avoid that and mock the item. One more customization is needed.
+License Manager in the stack trace? It means that we're running *internal* Sitecore code. To make robust tests we should avoid that and mock the item. One more customization is needed.
 
 ```cs
 internal class ItemCustomization : ICustomization
