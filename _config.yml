@@ -21,7 +21,7 @@
 title: Test Bitten Dev
 email: sshushlyapin@gmail.com 
 description: Thoughts about unit testing
-baseurl: "/blog"
+baseurl: ""
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: sshushliapin
 github_username:  sshushliapin
