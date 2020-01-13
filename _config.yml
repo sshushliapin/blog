@@ -24,8 +24,9 @@ email: sshushlyapin@gmail.com
 description: Thoughts about unit testing
 baseurl: ""
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
-github_username:  sshushliapin
+github_username: sshushliapin
 linkedin_username: serhii-shushliapin-1273b425
+stackoverflow_username: "4207332"
 twitter_username: sshushliapin
 rss: feed
 
