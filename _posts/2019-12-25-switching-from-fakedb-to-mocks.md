@@ -2,7 +2,7 @@
 layout: post
 title:  "Switching from FakeDb to mocks"
 date:   2019-12-25 12:07:00 +0200
-categories: 
+tags: [unit-testing]
 ---
 
 Historically, Sitecore was not a unit test friendly platform. The API consisted of static managers and testing was quite cumbersome. There were different attempts to address that starting from 'unit testing' via [web runners](https://www.codeflood.net/testrunner/), using commercial tools that could 'mock' statics (like [Microsoft Fakes](https://docs.microsoft.com/en-us/visualstudio/test/isolating-code-under-test-with-microsoft-fakes?view=vs-2019)) or just relying on expensive integration testing.

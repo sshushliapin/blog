@@ -2,6 +2,7 @@
 layout: post
 title:  "Configuring item children"
 date:   2020-01-11 11:54:00 +0200
+tags: [unit-testing]
 ---
 
 Probably one of the most used item operations is requesting its children. FakeDb typically configures item hierarchy in the [db context setup](https://github.com/sshushliapin/Sitecore.FakeDb/wiki/Creating-a-Hierarchy-of-Items) block (see `using` statement). Likely, for mocks that is not needed. In this post I'll show few advanced ways to extend `ItemCustomization` in order to add subitems to a mocked item.
