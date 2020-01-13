@@ -2,6 +2,7 @@
 layout: post
 title:  "Testing content tree via mocked item axes"
 date:   2019-12-30 02:02:00 +0200
+tags: [unit-testing]
 ---
 
 In the [previous post](/2019/12/25/switching-from-fakedb-to-mocks.html) I showed that FakeDb is not the only way of doing unit testing in Sitecore nowadays. Today I want to grab a real class with tests on FakeDb and create an alternative tests suite based on mocks and AutoFixture. You will see how to grow the test setup and will have a better chance to compare two approaches.
