@@ -190,6 +190,8 @@ I'd like to highlight that as soon as the fake logic behind mocks is trivial it'
 
 While all the samples above can be implemented in any testing suite, there are some public libraries that can do pretty much the same things OOTB. There is an example of item structure created with [Sitecore.NSubstituteUtils](https://github.com/smarchenko/SitecoreDI.NSubstitute.Helper#creating-item-and-structures-of-items):
 
+**[UPDATED 13-Jan-2020]:** Removed unnecessary `(Item)` type cast.
+
 ```cs
 [Theory, DefaultAutoData]
 public void ConfigureChildrenViaNSubstituteHelper(
@@ -197,12 +199,9 @@ public void ConfigureChildrenViaNSubstituteHelper(
     FakeItem child1Fake,
     FakeItem child2Fake)
 {
-    child1Fake.WithName("Getting Started");
-    child2Fake.WithName("Troubleshooting");
-
-    var parent = (Item)parentFake.WithChild(child1Fake).WithChild(child2Fake);
-    var child1 = (Item)child1Fake;
-    var child2 = (Item)child2Fake;
+    Item parent = parentFake.WithChild(child1Fake).WithChild(child2Fake);
+    Item child1 = child1Fake.WithName("Getting Started");
+    Item child2 = child2Fake.WithName("Troubleshooting");
 
     Assert.Same(child1, parent.Children["Getting Started"]);
     Assert.Same(child2, parent.Children["Troubleshooting"]);
@@ -214,7 +213,9 @@ public void ConfigureChildrenViaNSubstituteHelper(
 }
 ```
 
-Following this approach you won't need to introduce extension methods and implement fake item logic. Disadvantage (IMHO) is yet another alternative item management API (like in FakeDb). I'd like Sitecore to let us use default API without the necessity to jump between `FakeItem`/`DbItem` and `Item`.
+Following this approach you won't need to introduce extension methods and implement fake item logic. Potential disadvantage is yet another alternative item management API (like in FakeDb). I'd like Sitecore to let us use default API without the necessity to jump between `FakeItem`/`DbItem` and `Item`.
+
+You can find the full example [here](https://gist.github.com/sshushliapin/b1f11556e51010fc2ac667eecfafbf05).
 
 ### Conclusion
 
