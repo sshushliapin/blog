@@ -26,7 +26,8 @@ baseurl: ""
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 github_username: sshushliapin
 linkedin_username: serhii-shushliapin-1273b425
-stackoverflow_username: "4207332"
+stackoverflow_userid: "4207332"
+stackoverflow_username: "serhii-shushliapin"
 twitter_username: sshushliapin
 rss: feed
 
