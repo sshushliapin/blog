@@ -15,12 +15,9 @@
 }
 
 .certs {
-    display: inline;
-
-    img {
-        width: 208px;
-        margin-right: 8px;
-    }
+    display: flex;
+    flex-direction: column;
+    gap:32px;
 }
 
 /* Code formatting */
