@@ -39,6 +39,8 @@ plugins:
 
 google_analytics: UA-155985564-1
 
+permalink: /:categories/:year/:month/:day/:title
+
 # Exclude from processing.
 # The following items will not be processed, by default.
 # Any item listed under the `exclude:` key here will be automatically added to
