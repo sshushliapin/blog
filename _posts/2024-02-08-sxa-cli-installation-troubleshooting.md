@@ -2,7 +2,7 @@
 layout: post
 title:  "SXA CLI Installation Troubleshooting"
 date:   2024-02-08 16:08:00 +0200
-tags: [sxa, sxa-cli]
+tags: [sxa]
 ---
 
 While the installation process for SXA CLI appears straightforward and is documented in various blog posts (such as [here](https://www.markvanaalst.com/blog/sxa/installing-the-sitecore-sxa-cli) or [here](https://www.getfishtank.com/blog/install-sxa-theme-in-sitecore-docker-mvc-sxa-10)), I encountered several issues that necessitated additional steps. Below, I outline these challenges and their resolutions.
