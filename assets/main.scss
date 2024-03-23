@@ -18,6 +18,9 @@
     display: flex;
     flex-direction: column;
     gap:32px;
+    a {
+        align-self: center;
+    }
 }
 
 /* Code formatting */
