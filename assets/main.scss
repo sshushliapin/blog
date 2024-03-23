@@ -10,17 +10,11 @@
     }
 }
 
-.mvp-logo {
-    width: 208px;
-}
-
 .certs {
     display: flex;
     flex-direction: column;
     gap:32px;
-    a {
-        align-self: center;
-    }
+    align-items: center;
 }
 
 /* Code formatting */
